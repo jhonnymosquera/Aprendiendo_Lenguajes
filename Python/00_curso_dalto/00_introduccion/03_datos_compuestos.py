@@ -1,12 +1,12 @@
 # Datos compuestos
 
 # (Listas) funciona igual que un array de javascript y se accede a los datos de a misma manera lista[index]
-lista = ["Jhonny Mosquera", "Javier Moreno", True, 1.85]
+lista = ["Jhonny Mosquera", "Javier Moreno", True, 1.85, 50]
 lista[2] = "maquinola"  # Esto es valido, estamos modificnado true a "maquinola"
 
 # (Tuplas) es lo mismo que las listas, pero no se pueden modificar los datos
 tupla = ("Jhonny Mosquera", "Javier Moreno", True, 1.85)
-# tupla[3] = "maquinola" # Esto no es valido
+# tupla[2] = "maquinola" # Esto no es valido
 
 # Conjunto (set)
 # no podemos acceder al los elementos por su index
@@ -25,4 +25,4 @@ diccionario = {
     "altura": 1.85
 }
 
-print(diccionario)
+print(diccionario["altura"])

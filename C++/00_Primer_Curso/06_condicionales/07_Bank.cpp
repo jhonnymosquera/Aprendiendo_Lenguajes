@@ -126,12 +126,10 @@ int main()
                         {
                             opcion = 99;
                         }
-
+                    
                         atras = true;
-
                         switch (opcion)
                         {
-
                         case 99:
                             system("cls");
 

@@ -14,4 +14,12 @@ numero = round(12.34576846, 6)
 # bool() retorna False si le pasamos  --> 0, vacio, False, None
 # True si le masamos  --> dato distinto a 0, True, cadena de texto, datos no vacios
 resultado = bool("asdas")
+
+# all([ list ])
+# comprueba que todos los elementos de una lista sean verdaderos
+# retorna falso, si 1 elemento de la dista es --> 0, vacio, False,[],{},()
+
+resultado_all = all([0,"true",[334,23]])
+
+
 print(resultado)
