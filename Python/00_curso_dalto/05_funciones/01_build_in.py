@@ -1,4 +1,4 @@
-numeros = [4, 7, 1, 42, 15]
+numeros = [4, 7, 1, 42, 15, 30]
 
 # encontrando el numero mayor de una lista
 numero_mas_alto = max(numeros)
@@ -19,7 +19,10 @@ resultado = bool("asdas")
 # comprueba que todos los elementos de una lista sean verdaderos
 # retorna falso, si 1 elemento de la dista es --> 0, vacio, False,[],{},()
 
-resultado_all = all([0,"true",[334,23]])
+resultado_all = all([0, "true", [334, 23]])
 
+# sum([])
+# suma todos los valores de un iterable
+suma_total = sum(numeros)
 
-print(resultado)
+print(suma_total)

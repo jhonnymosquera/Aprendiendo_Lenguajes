@@ -63,5 +63,8 @@ cadena_nanueva = cadena6.replace("Python", "JavaScript")
 # en terminos de javascript convierte un string en un array usando como separador el caracter que le demos
 cadena_separada = cadena6.split(" ")
 
+cadena = "0123456789"
+# con [index:index] definimos desde que posicion queremos que se muestren los
+# el la posicion del segundo numero no esta inlcuida
 
-print(cadena_separada)
+print(cadena[3:7])
