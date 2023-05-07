@@ -1,9 +1,0 @@
-{
-	"[python]": {
-		"editor.defaultFormatter": "ms-python.autopep8"
-	},
-	"python.formatting.provider": "none",
-	"workbench.editor.openSideBySideDirection": "right",
-	"explorer.compactFolders": false,
-	"files.autoSave": "onFocusChange"
-}
