@@ -13,7 +13,7 @@ tupla = ("Jhonny Mosquera", "Javier Moreno", True, 1.85)
 # y no pondemos repetir datos
 # el orden de los elementos puede cambiar
 conjunto = {"Jhonny Mosquera", "Javier Moreno", "Javier Moreno", True, 1.85}
-# print(conjunto[2]) # no se puede
+# print(conjunto)  # no se puede
 
 # Diccionarios (dict)
 # es como un "JSON" de javascript diccionario = { "key1": "value1", "key2": "value2" }
@@ -25,4 +25,4 @@ diccionario = {
     "altura": 1.85
 }
 
-print(diccionario["altura"])
+# print(diccionario["altura"])

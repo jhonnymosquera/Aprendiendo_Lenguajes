@@ -11,7 +11,7 @@ int main()
 {
 
     int saldo_inicial = 0, opcion, ingresar, retirar, sub_opcion = 99;
-    bool app = true, login = true, atras;
+    bool app = true, login = false, atras;
 
     string title_bank = "\n\tBienvenido a tu Cajero Virtual BankPolombia";
     string usuario, usuario_log, contra, contra_log;
@@ -28,7 +28,7 @@ int main()
         cout << "\nOpcion: ";
         cin >> opcion;
 
-        if (opcion > 2)
+        if (opcion > 2 || opcion < 0)
         {
             opcion = 99;
         }
@@ -126,7 +126,7 @@ int main()
                         {
                             opcion = 99;
                         }
-                    
+
                         atras = true;
                         switch (opcion)
                         {

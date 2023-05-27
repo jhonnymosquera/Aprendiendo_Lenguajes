@@ -28,7 +28,7 @@ lista.extend(["asdasd", 1231, 250])
 ## ELIMINANDO ELEMENTOS DE UNA LISTA ###
 
 # list.pop( index )
-# elimina un element por su indice || Es mas correcto decir que sala el elemento de una lista y lo devuelve en una variable
+# elimina un element por su indice || Es mas correcto decir que saca el elemento de una lista y lo devuelve en una variable
 # Ademas deuvelve el elemento almacenado
 # -1 para eliminar el ultimo, -2 para eliminar el anteulrimo y asi sucecivamente...
 lista.pop(0)
