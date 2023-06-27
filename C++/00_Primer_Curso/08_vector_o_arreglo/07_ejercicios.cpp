@@ -9,7 +9,7 @@ using namespace std;
 int main()
 {
     int numeros[] = {1, 2, 3, 4, 5, 6};
-    int elementos = sizeof(numeros) / sizeof(numeros[0]);
+    const int elementos = sizeof(numeros) / sizeof(numeros[0]);
     int multiplicados[elementos];
 
     for (int i = 0; i < elementos; i++)

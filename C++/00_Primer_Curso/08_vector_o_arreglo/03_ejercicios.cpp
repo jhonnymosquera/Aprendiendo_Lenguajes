@@ -11,9 +11,8 @@ int main()
 
     int numeros[100];
     int numeo_de_elementos;
-    int length(int vector[]);
 
-    cout << "Numero de elementos que va a tener el arreglo: ";
+        cout << "Numero de elementos que va a tener el arreglo: ";
     cin >> numeo_de_elementos;
 
     for (int i = 0; i < numeo_de_elementos; i++)

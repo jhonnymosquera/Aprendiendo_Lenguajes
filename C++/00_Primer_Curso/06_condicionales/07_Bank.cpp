@@ -10,7 +10,7 @@ using namespace std;
 int main()
 {
 
-    int saldo_inicial = 0, opcion, ingresar, retirar, sub_opcion = 99;
+    int saldo_inicial = 0, opcion, ingresar, retirar;
     bool app = true, login = false, atras;
 
     string title_bank = "\n\tBienvenido a tu Cajero Virtual BankPolombia";
@@ -48,9 +48,9 @@ int main()
                 cout << "\n0. Atras" << endl;
 
                 cout << "\nOpcion: ";
-                cin >> sub_opcion;
+                cin >> opcion;
 
-                if (sub_opcion == 0)
+                if (opcion == 0)
                 {
                     system("cls");
                     atras = false;
@@ -141,9 +141,9 @@ int main()
                                 cout << "\n0. Atras" << endl;
 
                                 cout << "\nOpcion: ";
-                                cin >> sub_opcion;
+                                cin >> opcion;
 
-                                if (sub_opcion == 0)
+                                if (opcion == 0)
                                 {
                                     system("cls");
                                     atras = false;

@@ -15,8 +15,8 @@ int main()
     char letras_1[] = {'1', '2', '3', '4', '5'};
     char letras_2[] = {'6', '7', '8', '9'};
 
-    int elementos_letras_1 = sizeof(letras_1) / sizeof(letras_1[0]);
-    int elementos_letras_2 = sizeof(letras_2) / sizeof(letras_2[0]);
+    const int elementos_letras_1 = sizeof(letras_1) / sizeof(letras_1[0]);
+    const int elementos_letras_2 = sizeof(letras_2) / sizeof(letras_2[0]);
     int elementos_totales = elementos_letras_1 + elementos_letras_2;
 
     char letras_3[elementos_totales];
