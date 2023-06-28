@@ -1,15 +1,26 @@
 #include <iostream>
 #include <conio.h>
+#include <vector>
+
 using namespace std;
+
+struct historial
+{
+    string description;
+    int valor;
+};
 
 struct cuentaBancaria
 {
     string usuario;
     string clave;
-    int saldo = 0;
-} cuenta[10];
+    vector<historial> historial;
+    int saldo = 20000;
+};
 
-int cuentas_actuales_registradas = 0;
+vector<cuentaBancaria> cuentas;
+vector<historial> historialData;
+
 int opcion;
 int valor;
 
@@ -20,7 +31,8 @@ bool usuario_repetido;
 
 string usuario_ingresado;
 string clave_ingresada;
-int numero_de_cuenta = 0;
+int cuenta_en_sesion = 0;
+int historialSize;
 
 void titulo_aplicacion()
 {
@@ -30,17 +42,23 @@ void titulo_aplicacion()
 
 void mostrar_saldo()
 {
-    cout << "\nSaldo Actual: " << cuenta[numero_de_cuenta].saldo << "\n\n";
+    cout << "\nSaldo Actual: " << cuentas.at(cuenta_en_sesion).saldo << "\n\n";
 
     valor = 0;
 }
 
 int main()
 {
+
+    historialData = {{"<-- Se ha abierto la cuenta con un saldo de: ", 20000}};
+    cuentas.push_back({"pepe", "pepe", historialData});
+
+    cuentas.push_back({"pepon", "pepon", historialData});
+
     while (aplicacion)
     {
         titulo_aplicacion();
-        cout << cuentas_actuales_registradas << " de 10 cuentas\n\n";
+        cout << "Usuarios Registrados: " << cuentas.size() << "\n\n";
 
         cout << "1. Registrarse" << endl;
         cout << "2. Iniciar Sesion" << endl;
@@ -75,11 +93,11 @@ int main()
                     cout << "\nIngrese un nombre de usuario: ";
                     cin >> usuario_ingresado;
 
-                    if (cuentas_actuales_registradas != 0)
+                    if (cuentas.size() != 0)
                     {
-                        for (int i = 0; i < cuentas_actuales_registradas; i++)
+                        for (size_t i = 0; i < cuentas.size(); i++)
                         {
-                            if (cuenta[i].usuario == usuario_ingresado)
+                            if (cuentas.at(i).usuario == usuario_ingresado)
                             {
                                 titulo_aplicacion();
 
@@ -87,23 +105,25 @@ int main()
 
                                 usuario_repetido = true;
                                 system("pause");
+                                break;
                             }
                         }
                     }
                 } while (usuario_repetido);
 
-                cuenta[cuentas_actuales_registradas].usuario = usuario_ingresado;
-
                 cout << "Ingrese una clave: ";
-                cin >> cuenta[cuentas_actuales_registradas].clave;
+                cin >> clave_ingresada;
+
+                historialData = {{"Se ha abierto la cuenta con un saldo de: ", 0}};
+                cuentas.push_back({usuario_ingresado, clave_ingresada, historialData});
 
                 titulo_aplicacion();
 
                 cout << "\nUsuario y clave creados correctamente\n\n";
 
-                cuentas_actuales_registradas++;
                 sub_menu = false;
                 usuario_ingresado = "";
+                clave_ingresada = "";
                 system("pause");
 
             } while (sub_menu);
@@ -113,7 +133,7 @@ int main()
         case 2:
             /*Iniciar sesion*/
 
-            if (cuentas_actuales_registradas == 0)
+            if (cuentas.size() == 0)
             {
                 titulo_aplicacion();
 
@@ -137,15 +157,16 @@ int main()
                 cout << "Clave  : ";
                 cin >> clave_ingresada;
 
-                for (int i = 0; i < cuentas_actuales_registradas; i++)
+                for (size_t i = 0; i < cuentas.size(); i++)
                 {
-                    if (usuario_ingresado == cuenta[i].usuario)
+                    if (usuario_ingresado == cuentas.at(i).usuario)
                     {
-                        numero_de_cuenta = i;
+                        cuenta_en_sesion = i;
 
-                        if (clave_ingresada == cuenta[numero_de_cuenta].clave)
+                        if (clave_ingresada == cuentas.at(cuenta_en_sesion).clave)
                         {
                             sesion = true;
+                            break;
                         }
                     }
                 }
@@ -156,6 +177,7 @@ int main()
 
                     cout << "\nUsuario o Clave incorrectos" << endl;
 
+                    sub_menu = false;
                     system("pause");
                 }
 
@@ -169,6 +191,7 @@ int main()
                     cout << "2. Consignar" << endl;
                     cout << "3. Retirar" << endl;
                     cout << "4. Realizar Trasnferencia" << endl;
+                    cout << "5. Historial" << endl;
 
                     cout << "\n0. Cerrar Sesion" << endl;
 
@@ -188,11 +211,13 @@ int main()
                     case 2:
                         /*Consignar*/
                         titulo_aplicacion();
+                        mostrar_saldo();
 
-                        cout << "\nValor a Consignar: ";
+                        cout << "Valor a Consignar: ";
                         cin >> valor;
 
-                        cuenta[numero_de_cuenta].saldo += valor;
+                        cuentas.at(cuenta_en_sesion).saldo += valor;
+                        cuentas.at(cuenta_en_sesion).historial.push_back({"<-- Consignacion por valor de: ", valor});
 
                         titulo_aplicacion();
                         mostrar_saldo();
@@ -209,7 +234,7 @@ int main()
                         cout << "\nValor a Retirar: ";
                         cin >> valor;
 
-                        if (valor > cuenta[numero_de_cuenta].saldo)
+                        if (valor > cuentas.at(cuenta_en_sesion).saldo)
                         {
                             titulo_aplicacion();
                             mostrar_saldo();
@@ -220,7 +245,8 @@ int main()
                             break;
                         }
 
-                        cuenta[numero_de_cuenta].saldo -= valor;
+                        cuentas.at(cuenta_en_sesion).saldo -= valor;
+                        cuentas.at(cuenta_en_sesion).historial.push_back({"--> Retiro por valor de : ", valor});
 
                         titulo_aplicacion();
                         mostrar_saldo();
@@ -230,7 +256,7 @@ int main()
 
                     case 4:
                         /*Transferir*/
-                        if (cuentas_actuales_registradas < 2)
+                        if (cuentas.size() < 2)
                         {
                             titulo_aplicacion();
 
@@ -246,7 +272,11 @@ int main()
                         cout << "\nValor a Transferir: ";
                         cin >> valor;
 
-                        if (valor > cuenta[numero_de_cuenta].saldo)
+                        if (valor <= 0)
+                        {
+                            break;
+                        }
+                        else if (valor > cuentas.at(cuenta_en_sesion).saldo)
                         {
                             titulo_aplicacion();
                             mostrar_saldo();
@@ -260,16 +290,21 @@ int main()
                         cout << "Usuario Destino: ";
                         cin >> usuario_ingresado;
 
-                        for (int i = 0; i < cuentas_actuales_registradas; i++)
+                        for (size_t i = 0; i < cuentas.size(); i++)
                         {
-                            if (usuario_ingresado == cuenta[i].usuario)
+                            if (usuario_ingresado == cuentas.at(i).usuario)
                             {
                                 titulo_aplicacion();
 
-                                cout << "\n Se han trasferido: " << valor << " De manera correcta al usuario: " << cuenta[i].usuario << "\n\n";
+                                cout << "\nSe han trasferido: " << valor << " al usuario: " << cuentas.at(i).usuario << "\n\n";
 
-                                cuenta[i].saldo += valor;
-                                cuenta[numero_de_cuenta].saldo -= valor;
+                                /*Consignando y registrando el historial a quien se envia*/
+                                cuentas.at(i).saldo += valor;
+                                cuentas.at(i).historial.push_back({"<-- Trasnferencia del usuario: **" + cuentas.at(cuenta_en_sesion).usuario + "** Por valor de: ", valor});
+
+                                /*Reduciendo el valor del saldo actual del usuario que trasnfiere y agregando el historial*/
+                                cuentas.at(cuenta_en_sesion).saldo -= valor;
+                                cuentas.at(cuenta_en_sesion).historial.push_back({"--> Transferencia al  usuario: **" + usuario_ingresado + "** Por valor de: ", valor});
 
                                 valor = 0;
                                 system("pause");
@@ -284,10 +319,26 @@ int main()
                             cout << "\nEl usuario: " << usuario_ingresado << " No existe\n\n";
 
                             usuario_ingresado = "";
+                            valor = 0;
 
                             system("pause");
                         }
 
+                        break;
+
+                    case 5:
+                        /*Historial*/
+                        titulo_aplicacion();
+
+                        historialData = cuentas.at(cuenta_en_sesion).historial;
+
+                        for (size_t i = 0; i < historialData.size(); i++)
+                        {
+                            cout << historialData.at(i).description << historialData.at(i).valor << "\n";
+                        }
+
+                        mostrar_saldo();
+                        system("pause");
                         break;
 
                     case 0:

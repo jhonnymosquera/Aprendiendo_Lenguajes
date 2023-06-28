@@ -1,0 +1,2 @@
+Hola, este es un ejemplo de registro de datos en un archivo de texto.
+Puedes escribir cualquier contenido adicional aquí.
