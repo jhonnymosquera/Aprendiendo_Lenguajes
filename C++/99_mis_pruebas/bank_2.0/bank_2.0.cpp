@@ -188,7 +188,62 @@ int main()
                             break;
                         }
 
-                        cuentas.at(cuenta_en_sesion).transferencia();
+                        cuentas.at(cuenta_en_sesion).mostrar_saldo();
+
+                        cout << "\nValor a Transferir: ";
+                        cin >> valor;
+
+                        if (valor <= 0)
+                        {
+                            break;
+                        }
+                        else if (valor > cuentas.at(cuenta_en_sesion).saldo)
+                        {
+                            titulo_aplicacion();
+                            cuentas.at(cuenta_en_sesion).mostrar_saldo();
+
+                            cout << "\nSaldo Insuficiente\n\n";
+
+                            system("pause");
+                            break;
+                        }
+
+                        cout << "Usuario Destino: ";
+                        cin >> usuario_ingresado;
+
+                        for (size_t i = 0; i < cuentas.size(); i++)
+                        {
+                            if (usuario_ingresado == cuentas.at(i).usuario)
+                            {
+                                titulo_aplicacion();
+
+                                cout << "\nSe han trasferido: " << valor << " al usuario: " << cuentas.at(i).usuario << "\n\n";
+
+                                /*Consignando y registrando el historial a quien se envia*/
+                                cuentas.at(i).saldo += valor;
+                                cuentas.at(i).mi_historial.push_back({"<-- Trasnferencia del usuario: **" + cuentas.at(cuenta_en_sesion).usuario + "** Por valor de: ", valor});
+
+                                /*Reduciendo el valor del saldo actual del usuario que trasnfiere y agregando el historial*/
+                                cuentas.at(cuenta_en_sesion).saldo -= valor;
+                                cuentas.at(cuenta_en_sesion).mi_historial.push_back({"--> Transferencia al  usuario: **" + usuario_ingresado + "** Por valor de: ", valor});
+
+                                valor = 0;
+                                system("pause");
+                                break;
+                            }
+                        }
+
+                        if (valor > 0)
+                        {
+                            titulo_aplicacion();
+
+                            cout << "\nEl usuario: " << usuario_ingresado << " No existe\n\n";
+
+                            usuario_ingresado = "";
+                            valor = 0;
+
+                            system("pause");
+                        }
 
                         break;
 

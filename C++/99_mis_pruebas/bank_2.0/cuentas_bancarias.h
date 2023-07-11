@@ -4,6 +4,12 @@
 #include <conio.h>
 #include <vector>
 
+using namespace std;
+
+string usuario_ingresado;
+string clave_ingresada;
+int valor;
+
 void titulo_aplicacion()
 {
     system("cls");
@@ -42,8 +48,8 @@ struct cuentaBancaria
             titulo_aplicacion();
             cout << " La cantidad a consignar no es valida\n\n";
 
-            return;
             system("pause");
+            return;
         }
 
         this->saldo += valor;
@@ -85,66 +91,6 @@ struct cuentaBancaria
     };
 
     /*Transferir*/
-    void transferencia()
-    {
-
-        this->mostrar_saldo();
-
-        cout << "\nValor a Transferir: ";
-        cin >> valor;
-
-        if (valor <= 0)
-        {
-            return;
-        }
-        else if (valor > this->saldo)
-        {
-            titulo_aplicacion();
-            this->mostrar_saldo();
-
-            cout << "\nSaldo Insuficiente\n\n";
-
-            system("pause");
-            return;
-        }
-
-        cout << "Usuario Destino: ";
-        cin >> usuario_ingresado;
-
-        for (size_t i = 0; i < cuentas.size(); i++)
-        {
-            if (usuario_ingresado == cuentas.at(i).usuario)
-            {
-                titulo_aplicacion();
-
-                cout << "\nSe han trasferido: " << valor << " al usuario: " << cuentas.at(i).usuario << "\n\n";
-
-                /*Consignando y registrando el historial a quien se envia*/
-                cuentas.at(i).saldo += valor;
-                cuentas.at(i).mi_historial.push_back({"<-- Trasnferencia del usuario: **" + this->usuario + "** Por valor de: ", valor});
-
-                /*Reduciendo el valor del saldo actual del usuario que trasnfiere y agregando el historial*/
-                this->saldo -= valor;
-                this->mi_historial.push_back({"--> Transferencia al  usuario: **" + usuario_ingresado + "** Por valor de: ", valor});
-
-                valor = 0;
-                system("pause");
-                break;
-            }
-        }
-
-        if (valor > 0)
-        {
-            titulo_aplicacion();
-
-            cout << "\nEl usuario: " << usuario_ingresado << " No existe\n\n";
-
-            usuario_ingresado = "";
-            valor = 0;
-
-            system("pause");
-        }
-    }
 
     /*Historial*/
     void ver_historial()
