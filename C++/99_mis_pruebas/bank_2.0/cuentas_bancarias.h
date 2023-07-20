@@ -90,8 +90,6 @@ struct cuentaBancaria
         system("pause");
     };
 
-    /*Transferir*/
-
     /*Historial*/
     void ver_historial()
     {
@@ -102,6 +100,24 @@ struct cuentaBancaria
         }
 
         this->mostrar_saldo();
+        system("pause");
+    }
+
+    void ver_usuarios(vector<cuentaBancaria> cuentas)
+    {
+        titulo_aplicacion();
+
+        cout << "Otros Usuarios\n\n";
+
+        for (size_t i = 0; i < cuentas.size(); i++)
+        {
+            if (cuentas.at(i).usuario != cuentas.at(cuenta_en_sesion).usuario)
+            {
+
+                cout << "--> " << cuentas.at(i).usuario << endl;
+            }
+        }
+
         system("pause");
     }
 };
