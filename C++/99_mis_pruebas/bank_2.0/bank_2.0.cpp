@@ -254,6 +254,12 @@ int main()
                         cuentas.at(cuenta_en_sesion).ver_historial();
                         break;
 
+                    case 6:
+
+                        cuentas.at(cuenta_en_sesion).ver_usuarios(cuentas);
+
+                        break;
+
                     case 0:
                         sesion = false;
                         sub_menu = false;

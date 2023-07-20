@@ -12,6 +12,7 @@ int menu_cajero()
     cout << "3. Retirar" << endl;
     cout << "4. Realizar Trasnferencia" << endl;
     cout << "5. Historial" << endl;
+    cout << "6. Ver Otros Usuarios" << endl;
 
     cout << "\n0. Cerrar Sesion" << endl;
 
