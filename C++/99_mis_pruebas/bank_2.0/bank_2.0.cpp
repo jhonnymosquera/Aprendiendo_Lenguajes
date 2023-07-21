@@ -1,11 +1,11 @@
 #include <iostream>
 #include <conio.h>
 #include <vector>
+using namespace std;
+
 #include "variables_globales.h"
 #include "cuentas_bancarias.h"
 #include "menu_cajero.h"
-
-using namespace std;
 
 int main()
 {

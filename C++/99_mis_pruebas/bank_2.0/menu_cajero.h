@@ -1,6 +1,5 @@
 #ifndef menu_cajero_h
 #define menu_cajero_h
-#include <iostream>
 using namespace std;
 
 int menu_cajero()

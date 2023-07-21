@@ -1,10 +1,5 @@
 #ifndef cuetas_bancarias
 #define cuetas_bancarias
-#include <iostream>
-#include <conio.h>
-#include <vector>
-
-using namespace std;
 
 string usuario_ingresado;
 string clave_ingresada;

@@ -1,0 +1,22 @@
+// Librerias estandar con las que trabajaremos
+
+#include <iostream>
+#include <stdio.h>
+#include <windows.h> 
+#include <conio.h> // para la detecccion de teclas
+
+using namespace std;
+
+
+
+// Manejador de la salide de consola
+
+HANDLE salida_consola = GetStdHandle(STD_OUTPUT_HANDLE); 
+
+// coordenadas
+COORD coordenadas;
+    coordenadas.X = x;
+    coordenadas.Y = y;
+
+    recibe como parametro la salida de la consola y la coordenada en la que queremos que se hubique el cursor
+    SetConsoleCursorPosition(salida_consola,coordenadas)

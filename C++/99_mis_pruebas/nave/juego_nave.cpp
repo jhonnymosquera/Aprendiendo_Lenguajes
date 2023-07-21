@@ -1,30 +1,48 @@
 #include <iostream>
 #include <stdio.h>
 #include <windows.h>
+#include <conio.h>
 
 using namespace std;
 
-void posicion__del_cursor_en_consola(int x, int y)
-{
-
-    // Tomamos el control de salida de la consola
-    HANDLE salida_consola = GetStdHandle(STD_OUTPUT_HANDLE);
-    COORD coordenadas;
-    coordenadas.X = x;
-    coordenadas.Y = y;
-
-    /** setConsoleCursorPosition
-     * recibe 2 parametros
-     * 1 - entrada o salidad de la consola
-     * 2 - la posicion en la consola
-     */
-    SetConsoleCursorPosition(salida_consola, coordenadas);
-}
+// #include "globales.h"
+#include "config/config.h"
+#include "config/width_height_console.h"
+#include "config/escenario.h"
+#include "objetos/nave.h"
+#include "objetos/asteroide.h"
 
 int main()
 {
-    posicion__del_cursor_en_consola(5,5);
-    printf("5,5"); 
+    config();
+    pintar_scenario();
+    NAVE NAVE(console_width / 2, console_height - 3);
+
+    NAVE.pintar();
+
+    GetConsoleScreenBufferInfo(salida_consola, &csbi);
+    currentConsoleSize.X = csbi.srWindow.Right - csbi.srWindow.Left + 1;
+    currentConsoleSize.Y = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
+
+    while (!game_over)
+    {
+        NAVE.mover();
+
+        GetConsoleScreenBufferInfo(salida_consola, &csbi);
+        newConsoleSize.X = csbi.srWindow.Right - csbi.srWindow.Left + 1;
+        newConsoleSize.Y = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
+
+        if (newConsoleSize.X != currentConsoleSize.X || newConsoleSize.Y != currentConsoleSize.Y)
+        {
+            system("cls");
+
+            pintar_scenario();
+            NAVE.re_pintar(Console_width() / 2, Console_height() - 3);
+
+            currentConsoleSize = newConsoleSize;
+        }
+        Sleep(10);
+    }
 
     return 0;
 }
