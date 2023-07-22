@@ -10,7 +10,7 @@ int console_height = Console_height();
 
 void pintar_scenario()
 {
-    if (GetConsoleScreenBufferInfo(consoleHandle, &csbi))
+    if (GetConsoleScreenBufferInfo(salida_consola, &csbi))
     {
         int console_width = csbi.srWindow.Right - csbi.srWindow.Left + 1;
         int console_height = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;

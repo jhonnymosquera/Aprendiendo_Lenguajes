@@ -58,8 +58,8 @@ public:
             char tecla = getch();
             this->borrar();
 
-            tecla == IZQUIERDA &&x > 2 ? x-- : tecla;
-            tecla == DERECHA &&x < Console_width() - 5 ? x++ : tecla;
+            tecla == IZQUIERDA &&x > 3 ? x -= 2 : tecla;
+            tecla == DERECHA &&x < Console_width() - 7 ? x += 2 : tecla;
             // tecla == ARRIBA ? y-- : tecla;
             // tecla == ABAJO ? y++ : tecla;
 

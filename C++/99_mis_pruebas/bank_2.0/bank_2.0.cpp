@@ -74,7 +74,6 @@ int main()
 
                 historialData = {{"Se ha abierto la cuenta con un saldo de: ", 0}};
                 cuentas.push_back({usuario_ingresado, clave_ingresada, historialData});
-
                 titulo_aplicacion();
 
                 cout << "\nUsuario y clave creados correctamente\n\n";
