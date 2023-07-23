@@ -5,7 +5,6 @@
 
 using namespace std;
 
-// #include "globales.h"
 #include "config/config.h"
 #include "config/width_height_console.h"
 #include "config/escenario.h"
@@ -16,7 +15,7 @@ int main()
 {
     config();
     pintar_scenario();
-    NAVE NAVE(console_width / 2, console_height - 3);
+    NAVE NAVE(Console_width() / 2, Console_height() - 3);
 
     NAVE.pintar();
 
