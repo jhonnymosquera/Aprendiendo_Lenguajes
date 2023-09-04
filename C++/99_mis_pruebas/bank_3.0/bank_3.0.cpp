@@ -17,7 +17,6 @@ int main()
     while (aplicacion)
     {
         titulo_aplicacion();
-        cout << "Usuarios Registrados: " << cuentas.size() << "\n\n";
 
         cout << "1. Registrarse" << endl;
         cout << "2. Iniciar Sesion" << endl;
@@ -26,11 +25,6 @@ int main()
 
         cout << "\nOpcion: ";
         cin >> opcion;
-
-        if (opcion > 2 or opcion < 0)
-        {
-            opcion = 99;
-        }
 
         sub_menu = true;
 
@@ -42,7 +36,7 @@ int main()
             {
                 do
                 {
-                    usuario_repetido = false;
+                    system("cls");
 
                     titulo_aplicacion();
 
@@ -51,24 +45,7 @@ int main()
                     cout << "\nIngrese un nombre de usuario: ";
                     cin >> usuario_ingresado;
 
-                    if (cuentas.size() != 0)
-                    {
-                        for (size_t i = 0; i < cuentas.size(); i++)
-                        {
-                            if (cuentas.at(i).usuario == usuario_ingresado)
-                            {
-                                titulo_aplicacion();
-
-                                cout << "\nEl nombre de usuario ya existe" << endl;
-
-                                usuario_repetido = true;
-                                system("pause");
-                                break;
-
-                            }
-                        }
-                    }
-                } while (usuario_repetido);
+                } while (cuentas_bancarias.verificar_usuario_repetido(usuario_ingresado));
 
                 cout << "Ingrese una clave: ";
                 cin >> clave_ingresada;
@@ -91,17 +68,6 @@ int main()
         case 2:
             /*Iniciar sesion*/
 
-            if (cuentas.size() == 0)
-            {
-                titulo_aplicacion();
-
-                cout << "\nNo existen cuentas registradas\n"
-                     << endl;
-
-                system("pause");
-                break;
-            }
-
             /*Menu De inicio de sesion*/
             while (sub_menu)
             {
@@ -115,26 +81,13 @@ int main()
                 cout << "Clave  : ";
                 cin >> clave_ingresada;
 
-                for (size_t i = 0; i < cuentas.size(); i++)
-                {
-                    if (usuario_ingresado == cuentas.at(i).usuario)
-                    {
-                        cuenta_en_sesion = i;
+                sesion = cuentas_bancarias.iniciar_sesion(usuario_ingresado, clave_ingresada);
 
-                        if (clave_ingresada == cuentas.at(cuenta_en_sesion).clave)
-                        {
-                            sesion = true;
-                            break;
-                        }
-                        break;
-                    }
-                }
-
-                if (sesion == false)
+                if (!sesion)
                 {
                     titulo_aplicacion();
 
-                    cout << "\nUsuario o Clave incorrectos" << endl;
+                    cout << "\nUsuario o Clave incorrectos\n\n";
 
                     sub_menu = false;
                     system("pause");
@@ -143,6 +96,7 @@ int main()
                 /*Sesion iniciada*/
                 while (sesion)
                 {
+
                     /*Menu del cajero*/
                     titulo_aplicacion();
 
@@ -154,8 +108,6 @@ int main()
                         /*Ver saldo*/
                         titulo_aplicacion();
 
-                        cuentas.at(cuenta_en_sesion).mostrar_saldo();
-
                         system("pause");
                         break;
 
@@ -163,15 +115,11 @@ int main()
                         /*Consignar*/
                         titulo_aplicacion();
 
-                        cuentas.at(cuenta_en_sesion).consignar();
-
                         break;
 
                     case 3:
                         /*Retirar*/
                         titulo_aplicacion();
-
-                        cuentas.at(cuenta_en_sesion).retirar();
 
                         break;
 
@@ -274,14 +222,6 @@ int main()
 
             break;
 
-        case 99:
-            titulo_aplicacion();
-
-            cout << "\nOpcion incorrecta" << endl;
-
-            system("pause");
-            break;
-
         case 0:
             titulo_aplicacion();
 
@@ -292,6 +232,11 @@ int main()
             break;
 
         default:
+            titulo_aplicacion();
+
+            cout << "\nOpcion incorrecta" << endl;
+
+            system("pause");
             break;
         }
     }

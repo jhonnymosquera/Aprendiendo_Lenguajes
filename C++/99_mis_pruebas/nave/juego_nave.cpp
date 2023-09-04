@@ -5,7 +5,6 @@
 
 using namespace std;
 
-// #include "globales.h"
 #include "config/config.h"
 #include "config/width_height_console.h"
 #include "config/escenario.h"

@@ -20,6 +20,8 @@ public:
         // tercera linea de la nave
         posicion_en_consola(x, y + 2);
         printf("%c%c %c%c", 30, 190, 190, 30);
+
+        this->pintar_corazones();
     }
 
     void re_pintar(int x, int y)
@@ -36,6 +38,7 @@ public:
 
         this->x = x;
         this->y = y;
+        this->pintar();
     }
 
     void borrar()
@@ -66,6 +69,12 @@ public:
             this->pintar();
         }
     };
+
+    void pintar_corazones()
+    {
+        posicion_en_consola(Console_width() - 20, 2);
+        printf("Salud: ");
+    }
 };
 
 #endif

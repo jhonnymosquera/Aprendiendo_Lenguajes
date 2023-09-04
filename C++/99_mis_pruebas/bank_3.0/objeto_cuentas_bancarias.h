@@ -20,12 +20,32 @@ class cuentas_bancarias
 
     string cuenta_en_sesion;
 
-    int clave = 1;
+    int index_clave = 1;
     int saldo = 2;
 
 public:
+    bool verificar_usuario_repetido(string usuario)
+    {
+        bool repetido = false;
+
+        ifstream archivo("../cuentas/" + usuario + ".txt");
+
+        if (!archivo.fail())
+        {
+            titulo_aplicacion();
+
+            cout << "\nEl usuario esta repetido, ingrese otro usuario \n\n";
+
+            repetido = true;
+            system("pause");
+        }
+
+        return repetido;
+    }
+
     void crear_cuenta(cuentaBancaria2 datos)
     {
+
         ofstream archivo("../cuentas/" + datos.usuario + ".txt");
         if (archivo.fail())
         {
@@ -42,28 +62,45 @@ public:
         archivo.close();
     }
 
-    void iniciar_sesion(string usuario, string clave)
+    bool iniciar_sesion(string usuario, string clave)
     {
+        sesion = false;
+
         ifstream archivo("../cuentas/" + usuario + ".txt");
 
         if (archivo.fail())
         {
-            cout << "cuenta o contraseña incorrecta\n\n";
-            exit(1);
+            return sesion;
         }
 
-        string dato;
-        int contador;
+        string clave_de_cuenta;
+        int contador = 0;
+
         while (!archivo.eof())
         {
-            if (contador != this->clave)
+
+            getline(archivo, clave_de_cuenta);
+
+            contador++;
+            if (contador != this->index_clave)
             {
                 continue;
             }
-
-            getline(archivo, dato);
+            break;
         }
+
+        if (clave != clave_de_cuenta)
+        {
+            return sesion;
+        }
+        else
+        {
+            sesion = true;
+        }
+
+        return sesion;
     }
+
     void ver_saldo();
     void ingresar_saldo();
     void retirar_saldo();
