@@ -63,7 +63,28 @@ public:
 
             tecla == IZQUIERDA &&x > 3 ? x -= 2 : tecla;
             tecla == DERECHA &&x < Console_width() - 7 ? x += 2 : tecla;
-            // tecla == ARRIBA ? y-- : tecla;
+
+            /*simulando un salgo*/
+            
+
+            // if (tecla == ARRIBA)
+            // {
+            //     for (int i = 0; i < 5; i++)
+            //     {
+            //         this->borrar();
+            //         y--;
+            //         this->pintar();
+            //         Sleep(50);
+            //     }
+
+            //     for (int i = 0; i < 5; i++)
+            //     {
+            //         this->borrar();
+            //         y++;
+            //         this->pintar();
+            //         Sleep(50);
+            //     }
+            // }
             // tecla == ABAJO ? y++ : tecla;
 
             this->pintar();

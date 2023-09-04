@@ -15,7 +15,7 @@ int main()
 {
     config();
     pintar_scenario();
-    NAVE NAVE(console_width / 2, console_height - 3);
+    NAVE NAVE(Console_width() / 2, Console_height() - 3);
 
     NAVE.pintar();
 
