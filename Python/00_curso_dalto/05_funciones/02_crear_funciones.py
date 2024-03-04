@@ -9,16 +9,16 @@
 # saludar()
 
 # Funcion con parametros.
-def saluder(nombre):
+def saludar(nombre):
     print(f"Hola {nombre} como estas")
 
 
-saluder("dalto")
-saluder("Jhonny")
-saluder("Pepito")
-saluder("Pepote")
+saludar("dalto")
+saludar("Jhonny")
+saludar("Pepito")
+saludar("Pepote")
 
-# Crear funciones que no retorne valores
+# Crear funciones que retorne valores
 
 
 def crear_contraseña_random(num):

@@ -20,6 +20,7 @@ for numero, animal in zip(numeros, animales):
 
 # Forma no optima de recorrer una lista con su indice  ""NO FUNCIONA EN CONJUNTOS {}""
 ### No Valida ###
+
 for num in range(len(numeros)):
     print(numeros[num])
 
